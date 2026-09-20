@@ -9,12 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "file:next-local.tgz",
+    "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@next/swc-win32-x64-msvc": "file:swc.tgz",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
