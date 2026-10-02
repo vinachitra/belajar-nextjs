@@ -3,7 +3,7 @@
 import { messages } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export async function deleteMessages(formData) {
+export async function deleteMessage(formData) {
     const id = Number(formData.get("id"));
 
     const index = messages.findIndex(

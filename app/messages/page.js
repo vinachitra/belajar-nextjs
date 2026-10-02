@@ -1,7 +1,7 @@
 import { messages } from "@/lib/db";
-import { deleteMessages } from "./actions";
+import { deleteMessage } from "./actions";
 
-export default function MessagesPage() {
+export default function MessagePage() {
   return (
     <section className="mx-auto max-w-3xl px-6 py-20">
       <h1 className="text-3xl font-bold">Pesan Masuk</h1>
@@ -15,7 +15,7 @@ export default function MessagesPage() {
               <p className="font-medium">{msg.name} — {msg.email}</p>
               <p className="mt-1 text-sm text-muted-foreground">{msg.message}</p>
 
-              <form action={deleteMessages} className="mt-4">
+              <form action={deleteMessage} className="mt-4">
                 <input
                   type="hidden"
                   name="id"

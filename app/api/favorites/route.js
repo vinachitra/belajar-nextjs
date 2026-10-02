@@ -1,43 +1,16 @@
-import { favorites } from "@/lib/db";
+import { getAllFavorites, addFavorite } from "@/lib/services/favoriteService";
 
 export async function GET() {
-  return Response.json(favorites);
+  return Response.json(getAllFavorites());
 }
 
 export async function POST(request) {
-  let body;
+  const body = await request.json();
+  const result = addFavorite(body);
 
-  try {
-    body = await request.json();
-  } catch {
-    return Response.json(
-        { error: " Format JSON tidak valid" },
-        { status: 400 }
-    );
+  if (!result.success) {
+    return Response.json({ error: result.error }, { status: result.status });
   }
 
-  if (!body || Object.keys(body).length === 0) {
-    return Response.json(
-        { error: "Body request tidak boleh kosong" },
-        { status: 400 }
-    );
-  }
-
-  if (!body.id || !body.name) {
-    return Response.json(
-      { error: "id dan name wajib diisi" },
-      { status: 400 }
-    );
-  }
-
-  const alreadyExists = favorites.some((f) => f.id === body.id);
-  if (alreadyExists) {
-    return Response.json(
-      { error: "User ini sudah difavoritkan" },
-      { status: 400 }
-    );
-  }
-
-  favorites.push(body);
-  return Response.json(body, { status: 201 });
+  return Response.json(result.data, { status: result.status });
 }
